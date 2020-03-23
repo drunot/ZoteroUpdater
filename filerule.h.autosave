@@ -1,0 +1,51 @@
+#ifndef FILERULE_H
+#define FILERULE_H
+#include<QString>
+#include"httpobject.h"
+typedef QString(fileFunction)(HTTPObject * obj);
+
+class fileRule
+{
+public:
+    fileRule(QString extension, fileFunction * funktion);
+    ~fileRule();
+    inline QString run(HTTPObject * obj)
+    {
+        return (*_funktion)(obj);
+    }
+    static bool runMatch(HTTPObject * obj, QString & msg);
+
+
+    //Operators
+
+    inline bool operator==(const fileRule & right)
+    {
+        return _extension == right._extension;
+    }
+    inline bool operator==(const QString & right)
+    {
+        return _extension == right;
+    }
+    inline bool operator<(const fileRule & right)
+    {
+        return _extension < right._extension;
+    }
+    inline bool operator<(const QString & right)
+    {
+        return _extension < right;
+    }
+    inline bool operator>(const fileRule & right)
+    {
+        return _extension > right._extension;
+    }
+    inline bool operator>(const QString & right)
+    {
+        return _extension > right;
+    }
+private:
+    QString _extension;
+    fileFunction * _funktion;
+    static QList<fileRule *> _allFileRules;
+};
+
+#endif // FILERULE_H
