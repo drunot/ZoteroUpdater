@@ -55,7 +55,7 @@ HTTPObject * ZoteroUpdater(HTTPObject * obj)
     QStringList idParms;
     idParms.append(group);
     getProc.start(curl, idParms);
-    if(!getProc.waitForFinished(1000))
+    if(!getProc.waitForFinished(2000))
     {
         obj->setMsg(c503);
         obj->setCode(503);
@@ -81,7 +81,7 @@ HTTPObject * ZoteroUpdater(HTTPObject * obj)
     QStringList bibTexParms;
     bibTexParms.append(bibTex);
     getProc.start(curl, bibTexParms);
-    if(!getProc.waitForFinished(1000))
+    if(!getProc.waitForFinished(2000))
     {
         obj->setMsg(c503);
         obj->setCode(503);
