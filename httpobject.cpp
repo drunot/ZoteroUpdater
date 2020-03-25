@@ -319,7 +319,7 @@ QDateTime HTTPObject::getIfModifiedSince() const
 
 void HTTPObject::setMsg(QString msg)
 {
-    _msg = msg.toLatin1();
+    _msg = msg.toUtf8();
 }
 
 void HTTPObject::setMsg(QByteArray msg)
